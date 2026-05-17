@@ -7,6 +7,9 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { Toaster } from "sonner";
+import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
 
 import appCss from "../styles.css?url";
 
@@ -72,11 +75,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "AI Pulse — The future of AI, delivered daily" },
+      { name: "description", content: "AI Pulse covers AI news, tools, automation and workflows for builders, founders and tech-savvy operators." },
+      { name: "author", content: "AI Pulse" },
+      { property: "og:title", content: "AI Pulse — The future of AI, delivered daily" },
+      { property: "og:description", content: "AI news, tools, automation and workflows for builders." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
@@ -113,7 +116,14 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <div className="flex min-h-screen flex-col">
+        <Header />
+        <main className="flex-1">
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
+      <Toaster theme="dark" position="bottom-right" />
     </QueryClientProvider>
   );
 }
